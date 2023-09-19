@@ -20,4 +20,13 @@ public class User {
     @Column
     private String password;
 
+    public User() {
+    }
+    
+    public User(Long id, String username, String emailAddress, String password) {
+        this.id = id;
+        this.username = username;
+        this.emailAddress = emailAddress;
+        this.password = password;
+    }
 }
