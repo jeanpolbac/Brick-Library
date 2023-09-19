@@ -25,9 +25,9 @@ public class SecurityConfiguration {
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/h2-console/**").permitAll()
+        http.authorizeRequests().antMatchers("/h2-console/**", "/auth/users/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
+                .and().csrf().disable()
                 .httpBasic();
         return http.build();
     }
