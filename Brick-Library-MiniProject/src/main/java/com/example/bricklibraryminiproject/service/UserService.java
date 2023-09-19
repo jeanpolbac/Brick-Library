@@ -46,7 +46,7 @@ public class UserService {
      * @throws UserAlreadyExistsException if a user with the same email already exists
      */
     public User registerNewUser(User userData) {
-        if (userRepository.isEmailRegistered(userData.getEmailAddress())) {
+        if (userRepository.existsByEmailAddress(userData.getEmailAddress())) {
 
             logger.warning("An attempt to register with existing email, " + userData.getEmailAddress() + ", occurred.");
             throw new UserAlreadyExistsException("Email, " + userData.getEmailAddress() + ", is already registered.");
