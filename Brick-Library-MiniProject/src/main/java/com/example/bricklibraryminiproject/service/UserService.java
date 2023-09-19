@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.logging.Logger;
 
 /**
- * Service class responsible for user-related operations.
+ * Service class responsible for user-related operations
  */
 @Service
 public class UserService {
