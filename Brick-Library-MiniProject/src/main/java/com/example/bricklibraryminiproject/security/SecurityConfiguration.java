@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -29,5 +30,17 @@ public class SecurityConfiguration {
                 .and()
                 .httpBasic();
         return http.build();
+    }
+
+
+    /**
+     * Provides an instance of BCryptPasswordEncoder
+     * This is used for encoding/hashing passwords before storing them
+     *
+     * @return a BCryptPasswordEncoder instance
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
