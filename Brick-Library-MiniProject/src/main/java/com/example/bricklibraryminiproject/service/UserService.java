@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -28,8 +29,8 @@ public class UserService {
     /**
      * Constructor to initialize UserRepository and PasswordEncoder
      *
-     * @param userRepository Repository for user-related database operations
-     * @param passwordEncoder Encoder for user password
+     * @param userRepository        Repository for user-related database operations
+     * @param passwordEncoder       Encoder for user password
      */
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -57,5 +58,9 @@ public class UserService {
 
         // Save the user data in the database
         return userRepository.save(userData);
+    }
+
+    public Optional<User> findByEmailAddress(String emailAddress) {
+        return userRepository.findByEmailAddress(emailAddress);
     }
 }
