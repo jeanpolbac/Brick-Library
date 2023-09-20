@@ -68,13 +68,13 @@ public class UserController {
 
 
     /**
-     * Endpoint to update a user's information based on the provided user ID and updated data - NOT CURRENTLY WORKING
+     * Endpoint to update a user's information based on the provided user ID and updated data
      *
      * @param id              The unique identifier of the user to update
      * @param updatedUserData The new user data to be applied
      * @return                The updated user object
      */
-    @PutMapping("/edit/{Id}/") // http://localhost:9022/auth/users/edit/{id}
+    @PutMapping("/edit/{id}/") // http://localhost:9022/auth/users/edit/{id}
     public User editUser(@PathVariable Long id, @RequestBody User updatedUserData) {
         return userService.updateUser(id, updatedUserData);
     }
