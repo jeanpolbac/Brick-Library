@@ -2,8 +2,16 @@ package com.example.bricklibraryminiproject.service;
 
 import com.example.bricklibraryminiproject.exception.UserAlreadyExistsException;
 import com.example.bricklibraryminiproject.model.User;
+import com.example.bricklibraryminiproject.model.request.LoginRequest;
 import com.example.bricklibraryminiproject.repository.UserRepository;
+import com.example.bricklibraryminiproject.security.JwtUtils;
+import com.example.bricklibraryminiproject.security.MyUserDetails;
+import jdk.jshell.spi.ExecutionControlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +32,9 @@ public class UserService {
 
     // Encoder for password encryption
     private final PasswordEncoder passwordEncoder;
+
+    private JwtUtils jwtUtils;
+    private AuthenticationManager authenticationManager;
 
 
     /**
@@ -58,6 +69,23 @@ public class UserService {
 
         // Save the user data in the database
         return userRepository.save(userData);
+    }
+
+    public Optional<String> authenticateAndGenerateToken(LoginRequest loginRequest) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getEmailAddress(),
+                            loginRequest.getPassword()
+                    )
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            MyUserDetails myUserDetails = (MyUserDetails)  authentication.getPrincipal();
+            return Optional.of(jwtUtils.generateJwtToken(myUserDetails));
+        } catch (Exception e) {
+            logger.warning("Authentication failed for user: " + loginRequest.getEmailAddress());
+            return Optional.empty();
+        }
     }
 
     public Optional<User> findByEmailAddress(String emailAddress) {
