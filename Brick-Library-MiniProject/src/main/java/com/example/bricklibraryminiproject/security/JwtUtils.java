@@ -27,20 +27,26 @@ public class JwtUtils {
      * @return A JWT token as a String
      */
     public String generateJwtToken(MyUserDetails userDetails) {
-        return Jwts.builder()
-                // Set the subject (usually the username)
-                .setSubject(userDetails.getUsername())
+        try {
+            return Jwts.builder()
+                    // Set the subject (usually the username)
+                    .setSubject(userDetails.getUsername())
 
-                // Set the token's issuance time
-                .setIssuedAt(new Date(System.currentTimeMillis()))
+                    // Set the token's issuance time
+                    .setIssuedAt(new Date(System.currentTimeMillis()))
 
-                // Set the token's expiration time
-                .setExpiration(new Date(System.currentTimeMillis() + jwtTokenExpiration))
+                    // Set the token's expiration time
+                    .setExpiration(new Date(System.currentTimeMillis() + jwtTokenExpiration))
 
-                // Sign the token with the secret key using SHA-256
-                .signWith(SignatureAlgorithm.HS256, jwtSecretKey)
+                    // Sign the token with the secret key using SHA-256
+                    .signWith(SignatureAlgorithm.HS256, jwtSecretKey)
 
-                // Compact and return the JWT token as a String
-                .compact();
+                    // Compact and return the JWT token as a String
+                    .compact();
+
+        } catch (Exception e) {
+            logger.severe("Error generating JWT Token " + e.getMessage());
+            throw new RuntimeException("Error generating JWT Token", e);
+        }
     }
 }
