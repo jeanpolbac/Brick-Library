@@ -90,9 +90,22 @@ public class UserService {
                             loginRequest.getPassword()
                     )
             );
+            // Set the authenticated user in the security context
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // Get user details from the authenticated principal
             MyUserDetails myUserDetails = (MyUserDetails)  authentication.getPrincipal();
-            return Optional.of(jwtUtils.generateJwtToken(myUserDetails));
+
+            // Generate a JWT token
+            String jwtToken = jwtUtils.generateJwtToken(myUserDetails);
+
+            // Validate the generated token before returning it
+            if (jwtUtils.validateJwtToken(jwtToken)) {
+                return Optional.of(jwtToken);
+            } else {
+                logger.warning("The token created is not valid for the user " + loginRequest.getEmailAddress());
+                return Optional.empty();
+            }
         } catch (Exception e) {
             logger.warning("Authentication failed for user: " + loginRequest.getEmailAddress());
             return Optional.empty();
@@ -100,7 +113,7 @@ public class UserService {
     }
 
     /**
-     * NOT CURRENTLY WORKING
+     *
      * Updates a user's information based on the provided user ID and updated data
      *
      * @param id              The unique identifier of the user to update
