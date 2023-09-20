@@ -100,6 +100,7 @@ public class UserService {
     }
 
     /**
+     * NOT CURRENTLY WORKING
      * Updates a user's information based on the provided user ID and updated data
      *
      * @param id              The unique identifier of the user to update
@@ -127,6 +128,25 @@ public class UserService {
             throw new UserNotFoundException("User not found with id: " + id);
         }
     }
+
+    /**
+     * Deletes a user by their ID
+     *
+     * @param id The unique identifier of the user to delete
+     * @throws UserNotFoundException If the user with the given ID is not found
+     */
+    public void deleteUser(Long id) {
+        // Check if the user with the given id exists
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            // Delete the user from the database
+            userRepository.deleteById(id);
+        } else {
+            throw new UserNotFoundException("User not found with ID: " + id);
+        }
+    }
+
 
     public Optional<User> findByEmailAddress(String emailAddress) {
         return userRepository.findByEmailAddress(emailAddress);
