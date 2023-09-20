@@ -4,6 +4,17 @@ BrickLibrary is a web API built with Java Spring Boot, allowing users to keep tr
 
 > **Status**: 🚧 Under Development 🚧
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Technologies Used](#technologies-used)
+- [User Stories](#user-stories)
+- [ERD Diagram](#erd-diagram)
+- [REST API Endpoints](#rest-api-endpoints)
+- [Changelog](#changelog)
+- [Resources](#resources)
+- [Acknowledgments](#acknowledgments)
+
 ## Technologies Used
 - **Java SDK** 17
 - **Spring Boot** 2.7.15
@@ -99,4 +110,16 @@ All notable changes to this project will be documented in this file.
 - [H2 Database Official Website](https://www.h2database.com/)
 - [Maven Official Website](https://maven.apache.org/)
 - [Git Documentation](https://git-scm.com/doc)
-- [Oracle Java Documentation](https://docs.oracle.com/en/java/)
+- [Oracle Java Documentation](https://docs.oracle.com/en/java/) 
+
+</br >
+
+
+## Acknowledgments
+
+I would like to express my gratitude to the following instructors for their exceptional guidance and unwavering support throughout this class:
+
+- **Suresh Sigera**
+- **Dhrubo Chowdhury**
+
+Their expertise and dedication have played a pivotal role in my growth as a software engineer.
