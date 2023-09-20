@@ -40,7 +40,7 @@ public class UserController {
      * @param userData Details of the user to be registered
      * @return The registered user details
      */
-    @PostMapping("/register/") //http://localhost:9092/auth/users/register/
+    @PostMapping("/register/") //http://localhost:9022/auth/users/register/
     public User registerUser(@RequestBody User userData) {
         return userService.registerNewUser(userData);
     }
@@ -52,7 +52,7 @@ public class UserController {
      * @param loginRequest The login request containing user credentials
      * @return A ResponseEntity with a LoginResponse containing a JWT token if authentication is successful, or an unauthorized response if authentication fails
      */
-    @PostMapping("/login/") // http://localhost:9092/auth/users/login/
+    @PostMapping("/login/") // http://localhost:9022/auth/users/login/
     public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         // Try to authenticate the user and generate a JWT token
         Optional<String> jwtToken = userService.authenticateAndGenerateToken(loginRequest);
@@ -66,9 +66,31 @@ public class UserController {
         }
     }
 
-    @PutMapping("/edit/{Id}/")
-    public User editUser(@PathVariable Long id, @RequestBody User updatedUserData) {
 
+    /**
+     * Endpoint to update a user's information based on the provided user ID and updated data - NOT CURRENTLY WORKING
+     *
+     * @param id              The unique identifier of the user to update
+     * @param updatedUserData The new user data to be applied
+     * @return                The updated user object
+     */
+    @PutMapping("/edit/{Id}/") // http://localhost:9022/auth/users/edit/{id}
+    public User editUser(@PathVariable Long id, @RequestBody User updatedUserData) {
+        return userService.updateUser(id, updatedUserData);
     }
 
+    /**
+     * Deletes a user by their ID
+     *
+     * @param id The unique identifier of the user to delete
+     * @return A ResponseEntity indicating the result of the deletion operation
+     */
+    @DeleteMapping("/delete/{id}/")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User with ID " + id + " has been deleted.");
+    }
+
+
 }
+
