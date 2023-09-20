@@ -52,4 +52,51 @@ BrickLibrary is a web API built with Java Spring Boot, allowing users to keep tr
 **Acceptance Criteria**: Given I'm curious about a specific Lego set, When I click on its details, Then I should discover more about the set.
 
 ## ERD Diagram
-<img src="images\erd-diagram.png" style=" width:600px ; height:auto ">
+<!-- <img src="images\erd-diagram.png" style=" width:600px ; height:auto "> -->
+![ERD Diagram](images/erd-diagram.png)
+
+## REST API Endpoints
+| Endpoint | Request Type | URL                             | Functionality                                       | Access               |
+|----------|--------------|---------------------------------|-----------------------------------------------------|----------------------|
+| Register | POST         | `/auth/users/register/`          | Registers a new user with the provided user data.  | Public               |
+| Login    | POST         | `/auth/users/login/`             | Authenticates a user and returns a JWT token.     | Public               |
+| Edit     | PUT          | `/auth/users/edit/{id}/`         | Updates a user's information based on user ID.    | Authenticated Users  |
+| Delete   | DELETE       | `/auth/users/delete/{id}/`       | Deletes a user by their ID.                       | Authenticated Users  |
+
+
+## Changelog [Unreleased]
+
+All notable changes to this project will be documented in this file.
+
+
+### Added
+
+- User registration endpoint.
+- User login and authentication.
+- User update and delete endpoints.
+- API documentation.
+- JWT token-based authentication.
+- Exception handling for user-related operations.
+
+### Changed
+
+- Refactored user service for better organization.
+- Improved security configuration.
+
+### Fixed
+
+- Resolved issues related to user update and delete.
+
+
+
+
+## Resources
+- [Spring Boot Official Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+- [Spring Security Reference](https://docs.spring.io/spring-security/reference/html5/)
+- [Spring Initializer](https://start.spring.io/)
+- [JWT.io](https://jwt.io/)
+- [RFC 7519 (JWT Standard)](https://tools.ietf.org/html/rfc7519)
+- [H2 Database Official Website](https://www.h2database.com/)
+- [Maven Official Website](https://maven.apache.org/)
+- [Git Documentation](https://git-scm.com/doc)
+- [Oracle Java Documentation](https://docs.oracle.com/en/java/)
