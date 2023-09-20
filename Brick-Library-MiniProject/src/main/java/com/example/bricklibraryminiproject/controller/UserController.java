@@ -49,7 +49,14 @@ public class UserController {
     }
 
 
+    /**
+     * Authenticates a user based on the provided login request
+     *
+     * @param loginRequest The login request containing user credentials
+     * @return A ResponseEntity with a LoginResponse containing a JWT token if authentication is successful, or an unauthorized response if authentication fails
+     */
     public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
+        // Try to authenticate the user and generate a JWT token
         Optional<String> jwtToken = userService.authenticateAndGenerateToken(loginRequest);
 
         if (jwtToken.isPresent()) {
