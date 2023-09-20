@@ -6,4 +6,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "themes")
 public class Theme {
+    private Long id;
+
+    private String name;
 }
