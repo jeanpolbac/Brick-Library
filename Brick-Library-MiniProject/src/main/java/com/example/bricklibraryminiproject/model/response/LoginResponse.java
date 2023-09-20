@@ -8,7 +8,7 @@ public class LoginResponse {
         this.jwtToken = jwtToken;
     }
 
-    
+
     //Getter and Setter
     public String getJwtToken() {
         return jwtToken;
