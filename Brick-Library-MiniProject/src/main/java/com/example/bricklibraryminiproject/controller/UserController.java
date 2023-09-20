@@ -53,8 +53,10 @@ public class UserController {
         Optional<String> jwtToken = userService.authenticateAndGenerateToken(loginRequest);
 
         if (jwtToken.isPresent()) {
+            logger.info("Authentication is good for user " + loginRequest.getEmailAddress());
             return  ResponseEntity.ok(new LoginResponse(jwtToken.get()));
         } else {
+            logger.warning("Authentication failed for user " + loginRequest.getEmailAddress());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("Authentication failed!"));
         }
     }
