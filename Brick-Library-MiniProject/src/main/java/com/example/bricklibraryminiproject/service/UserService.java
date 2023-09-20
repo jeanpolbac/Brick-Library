@@ -1,6 +1,7 @@
 package com.example.bricklibraryminiproject.service;
 
 import com.example.bricklibraryminiproject.exception.UserAlreadyExistsException;
+import com.example.bricklibraryminiproject.exception.UserNotFoundException;
 import com.example.bricklibraryminiproject.model.User;
 import com.example.bricklibraryminiproject.model.request.LoginRequest;
 import com.example.bricklibraryminiproject.repository.UserRepository;
@@ -75,6 +76,12 @@ public class UserService {
         return userRepository.save(userData);
     }
 
+    /**
+     * Authenticates a user based on the provided login request and generates a JWT token upon successful authentication
+     *
+     * @param loginRequest The login request containing user credentials
+     * @return An Optional containing the JWT token if authentication is successful; otherwise, an empty Optional
+     */
     public Optional<String> authenticateAndGenerateToken(LoginRequest loginRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -89,6 +96,35 @@ public class UserService {
         } catch (Exception e) {
             logger.warning("Authentication failed for user: " + loginRequest.getEmailAddress());
             return Optional.empty();
+        }
+    }
+
+    /**
+     * Updates a user's information based on the provided user ID and updated data
+     *
+     * @param id              The unique identifier of the user to update
+     * @param updatedUserData The new user data to be applied
+     * @return The updated user object
+     * @throws UserNotFoundException If the user with the given ID is not found
+     */
+    public User updateUser(Long id, User updatedUserData) {
+        // Check if the user with the given id exists
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+
+            // Update the username field
+            existingUser.setUsername(updatedUserData.getUsername());
+
+            // Save the changes to the database
+            userRepository.save(existingUser);
+            logger.info("User updated with ID: " + id);
+
+            return existingUser; // Return the updated user
+        } else {
+            logger.warning("User not found with ID: " + id);
+            throw new UserNotFoundException("User not found with id: " + id);
         }
     }
 
