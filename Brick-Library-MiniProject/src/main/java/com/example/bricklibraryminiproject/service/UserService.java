@@ -6,8 +6,8 @@ import com.example.bricklibraryminiproject.model.request.LoginRequest;
 import com.example.bricklibraryminiproject.repository.UserRepository;
 import com.example.bricklibraryminiproject.security.JwtUtils;
 import com.example.bricklibraryminiproject.security.MyUserDetails;
-import jdk.jshell.spi.ExecutionControlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,20 +33,24 @@ public class UserService {
     // Encoder for password encryption
     private final PasswordEncoder passwordEncoder;
 
-    private JwtUtils jwtUtils;
-    private AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
+    private final AuthenticationManager authenticationManager;
 
 
     /**
-     * Constructor to initialize UserRepository and PasswordEncoder
+     * Constructor to initialize UserRepository, PasswordEncoder, JwtUtils, and AuthenticationManager
      *
-     * @param userRepository        Repository for user-related database operations
-     * @param passwordEncoder       Encoder for user password
+     * @param userRepository         Repository for user-related database operations
+     * @param passwordEncoder        Encoder for user password
+     * @param jwtUtils               JWT utility for token generation and validation
+     * @param authenticationManager Authentication manager for user authentication
      */
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder, JwtUtils jwtUtils, @Lazy AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtils = jwtUtils;
+        this.authenticationManager = authenticationManager;
     }
 
 
