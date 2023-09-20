@@ -55,6 +55,7 @@ public class UserController {
      * @param loginRequest The login request containing user credentials
      * @return A ResponseEntity with a LoginResponse containing a JWT token if authentication is successful, or an unauthorized response if authentication fails
      */
+    @PostMapping("/login/") // http://localhost:9092/auth/users/login/
     public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         // Try to authenticate the user and generate a JWT token
         Optional<String> jwtToken = userService.authenticateAndGenerateToken(loginRequest);
