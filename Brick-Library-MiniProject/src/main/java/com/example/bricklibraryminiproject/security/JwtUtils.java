@@ -1,12 +1,13 @@
 package com.example.bricklibraryminiproject.security;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 @Service
 public class JwtUtils {
@@ -49,4 +50,24 @@ public class JwtUtils {
             throw new RuntimeException("Error generating JWT Token", e);
         }
     }
+
+    /**
+     * Validates the provided JWT token
+     *
+     * @param authToken The JWT token to validate
+     * @return true if the token is valid, false otherwise
+     */
+    public boolean validateJwtToken(String authToken) {
+        try {
+            // Parse the JWT token using the secret key
+            Jwts.parser().setSigningKey(jwtSecretKey).parseClaimsJws(authToken);
+            return true;
+        } catch (SecurityException | MalformedJwtException | ExpiredJwtException |
+                 UnsupportedJwtException | IllegalArgumentException e) {
+            // Log the error message
+            logger.log(Level.SEVERE, "JWT Validation Error: " + e.getMessage());
+            return false;
+        }
+    }
+
 }
