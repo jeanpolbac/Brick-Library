@@ -1,6 +1,10 @@
 package com.example.bricklibraryminiproject.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "themes")
@@ -13,6 +17,11 @@ public class Theme {
 
     @Column
     private String name;
+
+
+    @OneToMany(mappedBy = "theme", orphanRemoval = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<LegoSet>legoSetList;
 
     public Theme() {
     }
