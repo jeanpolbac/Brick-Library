@@ -74,4 +74,15 @@ public class LegoSet {
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
+
+    @Override
+    public String toString() {
+        return "LegoSet{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", theme='" + theme + '\'' +
+                ", pieceCount=" + pieceCount +
+                ", releaseYear=" + releaseYear +
+                '}';
+    }
 }
