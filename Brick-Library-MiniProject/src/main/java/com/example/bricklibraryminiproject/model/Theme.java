@@ -23,6 +23,10 @@ public class Theme {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<LegoSet>legoSetList;
 
+    @ManyToOne
+    @JoinColumn(name = "user-id")
+    private User user;
+
     public Theme() {
     }
 
