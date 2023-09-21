@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LegoSetRepository extends JpaRepository<LegoSet, Long> {
+public interface ThemeRepository extends JpaRepository<LegoSet, Long> {
 }
