@@ -6,4 +6,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "legosets")
 public class LegoSet {
+    private Long id;
+
+    private String name;
+    private String theme;
+    private int pieceCount;
+    private int releaseYear;
+
 }
