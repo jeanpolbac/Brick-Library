@@ -24,7 +24,7 @@ public class Theme {
     private List<LegoSet>legoSetList;
 
     @ManyToOne
-    @JoinColumn(name = "user-id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Theme() {
