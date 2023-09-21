@@ -13,4 +13,14 @@ public class Theme {
 
     @Column
     private String name;
+
+    public Theme() {
+    }
+
+    public Theme(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+
 }
