@@ -23,4 +23,15 @@ public class LegoSet {
     @Column
     private int releaseYear;
 
+
+    public LegoSet() {
+    }
+
+    public LegoSet(Long id, String name, String theme, int pieceCount, int releaseYear) {
+        this.id = id;
+        this.name = name;
+        this.theme = theme;
+        this.pieceCount = pieceCount;
+        this.releaseYear = releaseYear;
+    }
 }
