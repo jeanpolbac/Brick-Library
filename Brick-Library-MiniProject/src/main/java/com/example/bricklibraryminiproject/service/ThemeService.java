@@ -10,22 +10,42 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Service class for managing themes
+ */
 @Service
 public class ThemeService {
     private static final Logger logger = Logger.getLogger(ThemeService.class.getName());
     private ThemeRepository themeRepository;
     private LegoSetRepository legoSetRepository;
 
+
+    /**
+     * Set the theme repository
+     *
+     * @param themeRepository The theme repository to set
+     */
     @Autowired
     public void setThemeRepository(ThemeRepository themeRepository) {
         this.themeRepository = themeRepository;
     }
 
+    /**
+     * Set the LegoSet repository - NOT YET USED
+     *
+     * @param legoSetRepository The LegoSet repository to set
+     */
     @Autowired
     public void setLegoSetRepository(LegoSetRepository legoSetRepository) {
         this.legoSetRepository = legoSetRepository;
     }
 
+    /**
+     * Creates a new theme if it doesn't already exist
+     *
+     * @param theme The theme to create
+     * @return The created theme
+     */
     public Theme createTheme(Theme theme) {
         try {
             Theme existingTheme = themeRepository.findByName(theme.getName());
@@ -41,6 +61,11 @@ public class ThemeService {
         }
     }
 
+    /**
+     * Retrieves a list of all themes
+     *
+     * @return A list of themes
+     */
     public List<Theme> getAllThemes() {
         return themeRepository.findAll();
     }
