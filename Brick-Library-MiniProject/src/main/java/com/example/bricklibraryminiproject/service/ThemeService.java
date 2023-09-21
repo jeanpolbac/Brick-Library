@@ -1,4 +1,4 @@
 package com.example.bricklibraryminiproject.service;
 
-public class LegoSetService {
+public class ThemeService {
 }
