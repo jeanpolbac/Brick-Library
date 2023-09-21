@@ -34,4 +34,44 @@ public class LegoSet {
         this.pieceCount = pieceCount;
         this.releaseYear = releaseYear;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public int getPieceCount() {
+        return pieceCount;
+    }
+
+    public void setPieceCount(int pieceCount) {
+        this.pieceCount = pieceCount;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
 }
