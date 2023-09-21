@@ -19,14 +19,25 @@ public class Theme {
     private String name;
 
 
+    /**
+     * One-to-many relationship with LegoSet entities where this Theme is the parent theme
+     * The "mappedBy" attribute specifies the field in the LegoSet entity that maps to this theme
+     * The "orphanRemoval" attribute indicates that orphaned LegoSet records won't be automatically removed
+     */
     @OneToMany(mappedBy = "theme", orphanRemoval = false)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<LegoSet>legoSetList;
 
+
+    /**
+     * Many-to-one relationship with the User entity, indicating that each theme is associated with a user
+     * The "name" attribute specifies the name of the foreign key column used to link themes to users
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    // Default constructor
     public Theme() {
     }
 
@@ -35,6 +46,7 @@ public class Theme {
         this.name = name;
     }
 
+    // Getter and Setter methods
     public Long getId() {
         return id;
     }
