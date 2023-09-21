@@ -51,6 +51,14 @@ public class Theme {
         this.name = name;
     }
 
+    public List<LegoSet> getLegoSetList() {
+        return legoSetList;
+    }
+
+    public void setLegoSetList(List<LegoSet> legoSetList) {
+        this.legoSetList = legoSetList;
+    }
+
     @Override
     public String toString() {
         return "Theme{" +
