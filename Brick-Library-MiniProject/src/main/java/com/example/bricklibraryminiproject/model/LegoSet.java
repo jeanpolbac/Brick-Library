@@ -17,9 +17,6 @@ public class LegoSet {
     private String name;
 
     @Column
-    private String theme;
-
-    @Column
     private int pieceCount;
 
     @Column
@@ -39,12 +36,13 @@ public class LegoSet {
     public LegoSet() {
     }
 
-    public LegoSet(Long id, String name, String theme, int pieceCount, int releaseYear) {
+
+    public LegoSet(Long id, String name, int pieceCount, int releaseYear, Theme theme) {
         this.id = id;
         this.name = name;
-        this.theme = theme;
         this.pieceCount = pieceCount;
         this.releaseYear = releaseYear;
+        this.theme = theme;
     }
 
     public Long getId() {
@@ -63,14 +61,6 @@ public class LegoSet {
         this.name = name;
     }
 
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
-    }
-
     public int getPieceCount() {
         return pieceCount;
     }
@@ -85,6 +75,14 @@ public class LegoSet {
 
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
+    }
+
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public void setTheme(Theme theme) {
+        this.theme = theme;
     }
 
     @Override
