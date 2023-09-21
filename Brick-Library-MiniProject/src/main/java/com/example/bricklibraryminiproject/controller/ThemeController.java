@@ -10,16 +10,30 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class responsible for handling HTTP requests related to themes
+ */
 @RestController
 @RequestMapping("/api") // http://localhost:9022/api
 public class ThemeController {
     private ThemeService themeService;
 
 
+    /**
+     * Constructor injection of ThemeService
+     *
+     * @param themeService The ThemeService instance to handle theme-related operations
+     */
     public ThemeController(ThemeService themeService) {
         this.themeService = themeService;
     }
 
+    /**
+     * POST requests to create a new theme
+     *
+     * @param theme The theme object to be created
+     * @return ResponseEntity with the created theme and HTTP status code
+     */
     @PostMapping("/themes/create/") // http://localhost:9022/api/themes/create
     public ResponseEntity<Theme> createTheme(@RequestBody Theme theme) {
         try {
@@ -32,6 +46,11 @@ public class ThemeController {
         }
     }
 
+    /**
+     * GET requests to retrieve all themes
+     *
+     * @return ResponseEntity with a list of themes and HTTP status code
+     */
     @GetMapping("/themes/all") // http://localhost:9022/api/themes/all
     public ResponseEntity<List<Theme>> getAllThemes() {
         List<Theme> allThemes = themeService.getAllThemes();
