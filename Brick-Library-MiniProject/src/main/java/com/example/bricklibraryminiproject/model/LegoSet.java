@@ -1,5 +1,7 @@
 package com.example.bricklibraryminiproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,16 @@ public class LegoSet {
     @Column
     private int releaseYear;
 
+
+    @ManyToOne
+    @JoinColumn(name = "theme_id")
+    @JsonIgnore
+    private Theme theme;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public LegoSet() {
     }
