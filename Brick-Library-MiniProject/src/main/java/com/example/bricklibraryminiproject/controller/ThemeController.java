@@ -6,10 +6,9 @@ import com.example.bricklibraryminiproject.model.Theme;
 import com.example.bricklibraryminiproject.service.ThemeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api") // http://localhost:9022/api
@@ -31,5 +30,11 @@ public class ThemeController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/themes/all") // http://localhost:9022/api/themes/all
+    public ResponseEntity<List<Theme>> getAllThemes() {
+        List<Theme> allThemes = themeService.getAllThemes();
+        return new ResponseEntity<>(allThemes, HttpStatus.OK);
     }
 }
