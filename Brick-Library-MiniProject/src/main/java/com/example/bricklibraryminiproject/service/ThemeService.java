@@ -7,6 +7,7 @@ import com.example.bricklibraryminiproject.repository.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -38,5 +39,9 @@ public class ThemeService {
             logger.severe("Failed to create theme " + e.getMessage());
             throw new RuntimeException("Failed to create theme " + e.getMessage(), e);
         }
+    }
+
+    public List<Theme> getAllThemes() {
+        return themeRepository.findAll();
     }
 }
