@@ -67,12 +67,15 @@ BrickLibrary is a web API built with Java Spring Boot, allowing users to keep tr
 ![ERD Diagram](images/erd-diagram.png)
 
 ## REST API Endpoints
-| Endpoint | Request Type | URL                             | Functionality                                       | Access               |
-|----------|--------------|---------------------------------|-----------------------------------------------------|----------------------|
-| Register | POST         | `/auth/users/register/`          | Registers a new user with the provided user data.  | Public               |
-| Login    | POST         | `/auth/users/login/`             | Authenticates a user and returns a JWT token.     | Public               |
-| Edit     | PUT          | `/auth/users/edit/{id}/`         | Updates a user's information based on user ID.    | Authenticated Users  |
-| Delete   | DELETE       | `/auth/users/delete/{id}/`       | Deletes a user by their ID.                       | Authenticated Users  |
+| Endpoint     | Request Type | URL                            | Functionality                                      | Access              |
+|--------------|--------------|--------------------------------|----------------------------------------------------|---------------------|
+| Register     | POST         | `/auth/users/register/`         | Registers a new user with the provided user data. | Public              |
+| Login        | POST         | `/auth/users/login/`            | Authenticates a user and returns a JWT token.    | Public              |
+| Edit         | PUT          | `/auth/users/edit/{id}/`        | Updates a user's information based on user ID.   | Authenticated Users |
+| Delete       | DELETE       | `/auth/users/delete/{id}/`      | Deletes a user by their ID.                      | Authenticated Users |
+| Create Theme | POST         | `/api/themes/create/`            | Creates a new theme.                              | Authenticated Users |
+| Get All      | GET          | `/api/themes/`                  | Retrieves a list of all themes.                   | Public              |
+
 
 
 ## Changelog [Unreleased]
@@ -85,9 +88,11 @@ All notable changes to this project will be documented in this file.
 - User registration endpoint.
 - User login and authentication.
 - User update and delete endpoints.
+- Theme creation endpoint.
+- Get all themes endpoint.
 - API documentation.
 - JWT token-based authentication.
-- Exception handling for user-related operations.
+- Exception handling for user and theme-related operations.
 
 ### Changed
 
@@ -97,7 +102,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Resolved issues related to user update and delete.
-
+- Fixed theme creation issues.
 
 
 
