@@ -56,4 +56,10 @@ public class ThemeController {
         List<Theme> allThemes = themeService.getAllThemes();
         return new ResponseEntity<>(allThemes, HttpStatus.OK);
     }
+
+    @PutMapping("/themes/update/{id}") // http://localhost:9022/api/themes/update/1
+    public ResponseEntity<Theme> updateTheme(@PathVariable Long id, @RequestBody Theme updatedTheme) {
+        Theme updatedThemeResult = themeService.updateTheme(id, updatedTheme);
+        return new ResponseEntity<>(updatedThemeResult, HttpStatus.OK);
+    }
 }
